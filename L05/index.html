@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+
     <head>
         <title>World Xplore</title>
         <meta charset="UTF-8">
@@ -14,6 +15,12 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
         <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
             .video-container {
                 right: 0;
                 bottom: 0;
@@ -26,6 +33,15 @@ and open the template in the editor.
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+            }
+            
+            .logo svg:hover {
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
             }
 
             @media (max-width: 767px) {
@@ -41,32 +57,113 @@ and open the template in the editor.
                 }
             }
 
-            .nav {
-                background-color: lightblue; 
-                height: 70px;
-            }
-
-            .logo svg:hover {
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-
-            .nav ul {
+            .section {
+                padding: 30px;
                 display: flex;
-                list-style: none;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .card-text {
+                color: black;
+            }
+
+            .card-img-top:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+            }
+
+            .footer {
+                width: auto;
+                margin-top: 100px;
+                padding: 40px;
+                background-color: #fff;
+                height: 230px;
+                flex-direction: column;
+            }
+
+            .footer .social {
+                text-align: center;
+                padding-bottom: 25px;
+                color: #4b4c4d;
+
+            }
+
+            .footer .social a {
+                text-align: center;
+                font-size: 24px;
+                color: inherit;
+                border: 1px solid #ccc;
+                width: 40px;
+                height: 40px;
+                line-height: 38px;
+                display: inline-block;
+                border-radius: 50%;
+                margin: 0.8px;
+                opacity: 0.75;
+            }
+
+            .footer .social a:hover {
+                opacity: 0.9;
+            }
+
+            .footer ul {
+                margin-top: 0;
                 padding: 0;
+                list-style: none;
+                font-size: 18px;
+                line-height: 1.6;
+                margin-bottom: 0;
+                text-align: center;
             }
 
-            .nav li {
-                margin-right: 20px;
+            .footer ul li a {
+                margin: 10px;
+                color: black;
+                text-decoration: none;
+                opacity: 0.8;
             }
 
-            .nav .logo {
-                margin-right: auto;
+            .footer ul li {
+                display: inline-block;
+                padding: 0 15;
+
+            }
+
+            .footer ul li a:hover {
+                font-weight: bold;
+            }
+
+            .footer .copyright {
+                margin-top: 15px;
+                text-align: center;
+                font-size: 13px;
+                color: #aaa;
+            }
+
+            .header {
+                border-bottom: 1px solid #E2E8F0;
+            }
+
+            li {
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000; 
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                background-color: lightblue;
             }
 
             .hamburger {
@@ -81,17 +178,38 @@ and open the template in the editor.
                 -webkit-transition: all 0.3s ease-in-out;
                 transition: all 0.3s ease-in-out;
                 background-color: #101010;
-                border-radius:100px;
             }
 
-            .nav-item:hover .dropdown-menu {
-                display: block;
+            .nav-menu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .nav-item {
+                margin-left: 5rem;
+            }
+
+            .nav-link {
+                font-size: 1.3rem;
+                font-weight: 400;
+                color: #475569;
+            }
+
+            .nav-link:hover {
+                color: #482ff7;
+            }
+
+            .nav-logo {
+                font-size: 2.1rem;
+                font-weight: 500;
+                color: #482ff7;
             }
 
             @media only screen and (max-width: 768px) {
                 .nav-menu {
                     position: fixed;
-                    left: -200%;
+                    left: -100%;
                     top: 5rem;
                     flex-direction: column;
                     background-color: #fff;
@@ -105,9 +223,7 @@ and open the template in the editor.
 
                 .nav-menu.active {
                     left: 0;
-                    padding: 0;
-                    margin:0;
-                    width:100vw;
+                    z-index: 999;
                 }
 
                 .nav-item {
@@ -132,141 +248,54 @@ and open the template in the editor.
                     transform: translateY(-8px) rotate(-45deg);
                 }
 
-            }
-
-            .section{
-                padding:30px;
-                display:flex;
-                text-align: center;
-                gap:20px;
-            }
-
-            .card-text {
-                color: black;
-            }
-
-            .card-img-top:hover {
-                transform: scale(1.1);
-                transition: transform 0.3s ease;
-            }
-
-            .footer{
-                width:auto;
-                margin-top:100px;
-                padding:40px;
-                background-color: #fff;
-                height:230px;
-                flex-direction: column;
-            }
-
-            .footer .social{
-                text-align:center;
-                padding-bottom:25px;
-                color:#4b4c4d;
 
             }
-            .footer .social a{
-                text-align:center;
-                font-size:24px;
-                color:inherit;
-                border:1px solid #ccc;
-                width:40px;
-                height:40px;
-                line-height:38px;
-                display:inline-block;
-                border-radius:50%;
-                margin:0.8px;
-                opacity:0.75;
-            }
-
-            .footer .social a:hover{
-                opacity:0.9;
-            }
-
-            .footer ul{
-                margin-top:0;
-                padding:0;
-                list-style:none;
-                font-size:18px;
-                line-height:1.6;
-                margin-bottom:0;
-                text-align:center;
-            }
-
-            .footer ul li a{
-                margin:10px;
-                color:black;
-                text-decoration:none;
-                opacity:0.8;
-            }
-
-            .footer ul li{
-                display: inline-block;
-                padding: 0 15;
-
-            }
-
-            .footer ul li a:hover{
-                font-weight: bold;
-            }
-
-            .footer .copyright{
-                margin-top:15px;
-                text-align:center;
-                font-size:13px;
-                color:#aaa;
-            }
-
         </style>
     </head>
 
     <body>
-        <header>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#">
-                            <div class="logo">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50">
-                                <defs>
-                                <style>
-                                    .cls-1 {
-                                        stroke-width: 0px;
-                                    }
+        <header class="header">
+            <nav class="navbar">
+                <a href="#">
+                    <div class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50">
+                        <defs>
+                        <style>
+                            .cls-1 {
+                                stroke-width: 0px;
+                            }
 
-                                    .cls-2 {
-                                        fill: #7ac943;
-                                        stroke: #3fa9f5;
-                                    }
+                            .cls-2 {
+                                fill: #7ac943;
+                                stroke: #3fa9f5;
+                            }
 
-                                    .cls-2, .cls-3 {
-                                        stroke-miterlimit: 10;
-                                    }
+                            .cls-2, .cls-3 {
+                                stroke-miterlimit: 10;
+                            }
 
-                                    .cls-3 {
-                                        fill: none;
-                                        stroke: #0071bc;
-                                    }
-                                </style>
+                            .cls-3 {
+                                fill: none;
+                                stroke: #0071bc;
+                            }
+                        </style>
 
-                                </defs>
-                                <path class="cls-1" d="m99,1v98H1V1h98m1-1H0v100h100V0h0Z"/>
-                                <g>
-                                <polyline class="cls-3" points="10.1 10 16.39 10 22.74 45.99 29.36 27.99 35.82 45.99 42.38 10 48.9 10 42.23 83 35.65 83 29.5 65.47 22.96 83 16.45 83 9.88 10"/>
-                                <polygon class="cls-3" points="50.01 10 60.15 10 69.78 37.21 79.61 10 90 10 75.28 47.28 90 83 80.24 83 70 55.39 60.27 83 50.01 83 64.93 46.5 50.01 10"/>
-                                <path class="cls-2" d="m36.5,50.5c-3.85,1.14-9.03-8.03-11-7-1.75.91,1.94,8.39-1,11-2.23,1.99-5.78-.82-8,1-3.88,3.18.71,17.03,4,17,1.4-.01,2.71-2.52,4-5,1.92-3.68,1.66-5.55,3-6,1.91-.64,4.62,2.44,6,4,3.36,3.81,3.47,6.84,5,7,1,.1,2.59-1.01,5-7-.31-.92-.87-2.11-2-3-1.93-1.51-3.7-.7-5-2-1.66-1.66-1.25-5.46,0-6,1.58-.69,4.86,4.65,6,4,.76-.43-.8-2.75,0-6,.64-2.6,2.11-3.03,2-5-.1-1.93-1.66-4.05-3-4-2.2.08-2.1,6.14-5,7Z"/>
-                                <path class="cls-2" d="m46.5,19.5c-1.03-2.19-3.06-4.38-4-4-1.05.42-1.1,4.07,0,6,.5.88,1.03,1.22,1,2,0,.1-.03.3-.18.66-.56,1.33-1.5,1.61-1.82,2.34-.22.51-.21,1.39,1,3,1.57.52,2.5.25,3,0,2.53-1.28,2.66-6.48,1-10Z"/>
-                                <path class="cls-2" d="m17.5,24.5c0,.96,0,.97,0,1,.02,1.51,1.34,2.7,2,4,.97,1.9.49,3.94,0,6-.43,1.84-.76,3.19-2,4-1.36.88-3.44.87-4,0-.46-.73.51-1.48,1-4,.23-1.2.5-2.56,0-4-.59-1.7-1.59-1.58-2-3-.56-1.94,1.16-2.65,1-5-.17-2.41-2.04-2.64-2-5,.04-2.3,1.85-3.88,2-4,.76-.64,1.38-1.16,2-1,1.99.51,2,7.5,2,9,0,.05,0,.93,0,2Z"/>
-                                <path class="cls-2" d="m75.5,55.5c2.78-.06,4.54,3.96,5,5,0,0,2.16,5.09,1,11h0c1.93,1.81,3,3,3,3,2.14,2.37,3.24,3.59,3,5-.27,1.61-2.23,3.05-4,3-2.95-.08-4.69-4.25-5-5-2.2-5.29,1.17-8.06-1-12-1.96-3.57-5.92-3.46-6-6-.06-1.88,2.03-3.96,4-4Z"/>
-                                <path class="cls-2" d="m78.5,27.5c1.31.15,1.92,2.7,2,3,.68,2.71-1.01,5.42-2.76,6.82-.06.05-.12.09-.24.18-3.09,2.31-4.48,2.05-5,3-.89,1.63,2.56,3.62,2,6-.53,2.27-4.54,4.17-7,3-3.44-1.64-2.11-8.44-2-9,.61-2.97,1.97-6.13,3-6,1.08.14.84,3.77,2,4,2.12.43,5.09-11.34,8-11Z"/>
-                                <path class="cls-2" d="m52.5,11.5c1-1.38,5.78-.94,8,2,1.82,2.41,1.14,5.44,1,6,1,1.16,1.62,2.24,2,3,.63,1.27,1.21,2.49,1,4-.07.5-.22,1.54-1,2-.37.22-.87.29-2,0-1.3-.34-2.7-.71-4-2-1.41-1.41-2.75-3.97-2-6,.39-1.06,1.07-1.22,1-2-.1-1.19-1.73-1.35-3-3-.87-1.13-1.66-3.09-1-4Z"/>
-                                </g>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
+                        </defs>
+                        <path class="cls-1" d="m99,1v98H1V1h98m1-1H0v100h100V0h0Z"/>
+                        <g>
+                        <polyline class="cls-3" points="10.1 10 16.39 10 22.74 45.99 29.36 27.99 35.82 45.99 42.38 10 48.9 10 42.23 83 35.65 83 29.5 65.47 22.96 83 16.45 83 9.88 10"/>
+                        <polygon class="cls-3" points="50.01 10 60.15 10 69.78 37.21 79.61 10 90 10 75.28 47.28 90 83 80.24 83 70 55.39 60.27 83 50.01 83 64.93 46.5 50.01 10"/>
+                        <path class="cls-2" d="m36.5,50.5c-3.85,1.14-9.03-8.03-11-7-1.75.91,1.94,8.39-1,11-2.23,1.99-5.78-.82-8,1-3.88,3.18.71,17.03,4,17,1.4-.01,2.71-2.52,4-5,1.92-3.68,1.66-5.55,3-6,1.91-.64,4.62,2.44,6,4,3.36,3.81,3.47,6.84,5,7,1,.1,2.59-1.01,5-7-.31-.92-.87-2.11-2-3-1.93-1.51-3.7-.7-5-2-1.66-1.66-1.25-5.46,0-6,1.58-.69,4.86,4.65,6,4,.76-.43-.8-2.75,0-6,.64-2.6,2.11-3.03,2-5-.1-1.93-1.66-4.05-3-4-2.2.08-2.1,6.14-5,7Z"/>
+                        <path class="cls-2" d="m46.5,19.5c-1.03-2.19-3.06-4.38-4-4-1.05.42-1.1,4.07,0,6,.5.88,1.03,1.22,1,2,0,.1-.03.3-.18.66-.56,1.33-1.5,1.61-1.82,2.34-.22.51-.21,1.39,1,3,1.57.52,2.5.25,3,0,2.53-1.28,2.66-6.48,1-10Z"/>
+                        <path class="cls-2" d="m17.5,24.5c0,.96,0,.97,0,1,.02,1.51,1.34,2.7,2,4,.97,1.9.49,3.94,0,6-.43,1.84-.76,3.19-2,4-1.36.88-3.44.87-4,0-.46-.73.51-1.48,1-4,.23-1.2.5-2.56,0-4-.59-1.7-1.59-1.58-2-3-.56-1.94,1.16-2.65,1-5-.17-2.41-2.04-2.64-2-5,.04-2.3,1.85-3.88,2-4,.76-.64,1.38-1.16,2-1,1.99.51,2,7.5,2,9,0,.05,0,.93,0,2Z"/>
+                        <path class="cls-2" d="m75.5,55.5c2.78-.06,4.54,3.96,5,5,0,0,2.16,5.09,1,11h0c1.93,1.81,3,3,3,3,2.14,2.37,3.24,3.59,3,5-.27,1.61-2.23,3.05-4,3-2.95-.08-4.69-4.25-5-5-2.2-5.29,1.17-8.06-1-12-1.96-3.57-5.92-3.46-6-6-.06-1.88,2.03-3.96,4-4Z"/>
+                        <path class="cls-2" d="m78.5,27.5c1.31.15,1.92,2.7,2,3,.68,2.71-1.01,5.42-2.76,6.82-.06.05-.12.09-.24.18-3.09,2.31-4.48,2.05-5,3-.89,1.63,2.56,3.62,2,6-.53,2.27-4.54,4.17-7,3-3.44-1.64-2.11-8.44-2-9,.61-2.97,1.97-6.13,3-6,1.08.14.84,3.77,2,4,2.12.43,5.09-11.34,8-11Z"/>
+                        <path class="cls-2" d="m52.5,11.5c1-1.38,5.78-.94,8,2,1.82,2.41,1.14,5.44,1,6,1,1.16,1.62,2.24,2,3,.63,1.27,1.21,2.49,1,4-.07.5-.22,1.54-1,2-.37.22-.87.29-2,0-1.3-.34-2.7-.71-4-2-1.41-1.41-2.75-3.97-2-6,.39-1.06,1.07-1.22,1-2-.1-1.19-1.73-1.35-3-3-.87-1.13-1.66-3.09-1-4Z"/>
+                        </g>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="nav-menu">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="packageToursDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Package Tours
@@ -278,20 +307,20 @@ and open the template in the editor.
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/js/">Rediscover Singapore</a>
+                        <a href="#" class="nav-link">Rediscover Singapore</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/python/">Cruises</a>
+                        <a href="#" class="nav-link">Cruises</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact/">Contact Us</a>
+                        <a href="#" class="nav-link">Contact</a>
                     </li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
-                </div> 
+                </div>
             </nav>
         </header>
 
@@ -310,21 +339,28 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card">
-                            <img class="card-img-top" src="Screenshot (336).png" style="width:100%;" alt="Hong Kong" height="300" width="300">
+                            <img class="card-img-top" src="Screenshot (336).png" style="width:100%;" alt="Hong Kong"
+                                 height="300" width="300">
                             <div class="card-body">
                                 <h4 class="card-title">Hong Kong</h4>
-                                <p class="card-text">Hong Kong has one of the world's most thriving economies and is a hub for international trade and investment. A cosmopolitan city, Hong Kong weaves Western and Asian influence into a world-class center of business, culture, and trade.</p>
+                                <p class="card-text">Hong Kong has one of the world's most thriving economies and is a hub
+                                    for international trade and investment. A cosmopolitan city, Hong Kong weaves Western
+                                    and Asian influence into a world-class center of business, culture, and trade.</p>
                                 <a href="tour1.html">Read more</a>
                             </div>
                         </div>
-                    </div>   
+                    </div>
 
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card">
-                            <img class="card-img-top" src="Screenshot (337).png" style="width:100%;" alt="Korea" height="300" width="300">
+                            <img class="card-img-top" src="Screenshot (337).png" style="width:100%;" alt="Korea"
+                                 height="300" width="300">
                             <div class="card-body">
                                 <h4 class="card-title">Korea</h4>
-                                <p class="card-text">Situated near North Korea, Seoul is the largest city and the commercial, manufacturing, and cultural centre of South Korea. Industrial plants produce textiles, clothing, chemicals, processed food, electrical and electronic equipment, machinery, and printed materials.</p>
+                                <p class="card-text">Situated near North Korea, Seoul is the largest city and the
+                                    commercial, manufacturing, and cultural centre of South Korea. Industrial plants produce
+                                    textiles, clothing, chemicals, processed food, electrical and electronic equipment,
+                                    machinery, and printed materials.</p>
                                 <a href="tour2.html">Read more</a>
                             </div>
                         </div>
@@ -332,14 +368,17 @@ and open the template in the editor.
 
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card">
-                            <img class="card-img-top" src="Screenshot (338).png" style="width:100%;" alt="Thailand" height="300" width="300">
+                            <img class="card-img-top" src="Screenshot (338).png" style="width:100%;" alt="Thailand"
+                                 height="300" width="300">
                             <div class="card-body">
                                 <h4 class="card-title">Thailand</h4>
-                                <p class="card-text">Thailand is home to Buddhist temples, exotic wildlife and spectacular islands. It is also known for its fascinating history, unique culture and delectable local food.</p>
+                                <p class="card-text">Thailand is home to Buddhist temples, exotic wildlife and spectacular
+                                    islands. It is also known for its fascinating history, unique culture and delectable
+                                    local food.</p>
                                 <a href="#">Read more</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
         </section>
 
@@ -352,17 +391,17 @@ and open the template in the editor.
             </div>
 
             <ul class="list">
-                <li><a  href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
                 <li> <a href="#">Package Tours</a></li>
                 <li> <a href="#">Rediscover Singapore</a></li>
-                <li><a href="#">Cruises</a></li> 
-                <li><a href="#">Contact us</a></li> 
+                <li><a href="#">Cruises</a></li>
+                <li><a href="#">Contact us</a></li>
             </ul>
 
             <p class="copyright">
                 World Xplore © 2023
             </p>
-        </section> 
+        </section>
 
         <script>
             const hamburger = document.querySelector(".hamburger");
@@ -385,4 +424,5 @@ and open the template in the editor.
             }
         </script>
     </body>
+
 </html>
