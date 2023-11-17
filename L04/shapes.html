@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Fun Shapes!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .shape {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .circle {
+      border-radius: 50%;
+      background-color: lightblue;
+    }
+
+    .circle:hover:before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: plum;
+    }
+    
+    
+  </style>
+    </head>
+    <body>
+        <div class="shape circle"></div>
+    </body>
+</html>
