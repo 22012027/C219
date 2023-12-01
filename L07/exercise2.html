@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercise 2</title>
+
+        <!-- Add jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <style>
+            /* Add some initial styles for the output div */
+            #output {
+                display: none;
+                font-family: Arial;
+                border: 1px solid #ccc;
+                background-color: cyan;
+                padding: 10px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form id="myForm">
+            <!-- Two text fields - Name and Email -->
+            <input id="name" type="text" placeholder="Name" value=""><br><br>
+            <input id="email" type="email" placeholder="Email" value=""><br><br>
+            <!-- Two radio buttons for Gender - Male and Female -->
+            <label for="male">Male</label>
+            <input type="radio" id="male" name="gender" value="male">
+
+            <label for="female">Female</label>
+            <input type="radio" id="female" name="gender" value="female"><br><br>
+            <!-- Submit button -->
+            <input type="submit" value="Submit">
+        </form>
+
+        <!-- Display form data -->
+        <div id="output"></div>
+
+        <script>
+            // JavaScript to get and display form data
+            $(document).ready(function () {
+                $("#myForm").submit(function (event) {
+                    event.preventDefault(); // Prevents the form from actually submitting
+
+                    // Get values from form
+                    var name = $("#name").val();
+                    var email = $("#email").val();
+
+                    // Display the data with fadeIn effect
+                    $("#output").html("Name: " + name + "<br>Email: " + email).fadeIn();
+
+                    // Add CSS styles using jQuery CSS method
+                    $("#output").css({
+                        'font-family': 'Arial',
+                        'border': '1px solid #333',
+                        'background-color': 'cyan'
+                    });
+                });
+
+                // Slide up the form data on mouseover
+                $("#output").mouseover(function () {
+                    $(this).slideUp();
+                });
+            });
+        </script>
+    </body>
+</html>
