@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise 4</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>exercise 4</h1>
+
+    <!-- Create a canvas element to render the pie chart -->
+    <canvas id="myPieChart" width="400" height="400"></canvas>
+
+    <script>
+        // Data for the pie chart
+        var data = {
+            labels: ['January', 'February', 'March', 'May', 'June'],
+            datasets: [{
+                data: [40, 30, 10, 20, 25, 15], // Values for each section of the pie chart
+                backgroundColor: ['red', 'yellow', 'purple', 'green', 'blue', 'pink'], // Colors for each section
+            }]
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        // Create the pie chart
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+        });
+    </script>
+</body>
+</html>
