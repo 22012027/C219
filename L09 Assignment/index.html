@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Polytechnics in Singapore</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <style>
+            #map {
+                height: 400px;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Singapore Polytechnics</h2>
+
+        <!-- Map -->
+        <div id="map"></div>
+
+        <!-- Table -->
+        <h3>Diploma Courses at RP</h3>
+        <table id="coursesTable" class="display" width="100%"></table>     
+
+        <script>
+            // Add the data source for the DataTable here
+            var dataSet = [
+                ["School of Applied Science", "Diploma in Biomedical Science", "DBMS", "R14"],
+                ["School of Applied Science", "Diploma in Biotechnology", "DBIO", "R16"],
+                ["School of Applied Science", "Diploma in Environmental Science", "DENV", "R29"],
+                ["School of Applied Science", "Diploma in Marine Science &amp; Aquaculture", "DMAC", "R53"],
+                ["School of Applied Science", "Diploma in Materials Science", "DMTS", "R17"],
+                ["School of Applied Science", "Diploma in Pharmaceutical Science", "DPHM", "R22"],
+                ["School of Applied Science", "Common Science Programme", "CSP", "R59"],
+                ["School of Engineering", "Diploma in Aerospace Engineering", "DAE", "R40"],
+                ["School of Engineering", "Diploma in Aviation Management", "DAVM", "R39"],
+                ["School of Engineering", "Diploma in Engineering Design with Business", "DEDB", "R56"],
+                ["School of Engineering", "Diploma in Electrical &amp; Electronic Engineering", "DEEE", "R50"],
+                ["School of Engineering", "Diploma in Engineering Systems &amp; Management", "DESM", "R54"],
+                ["School of Engineering", "Diploma in Green Building Energy Management", "DGEM", "R41"],
+                ["School of Engineering", "Diploma in Supply Chain Management", "DSCM", "R21"],
+                ["School of Engineering", "Common Engineering Programme", "CEP", "R42"],
+                ["School of Hospitality", "Diploma in Integrated Events Management", "DIEM", "R28"],
+                ["School of Hospitality", "Diploma in Customer Experience Management with Business", "DCXB", "R34"],
+                ["School of Hospitality", "Diploma in Hotel &amp; Hospitality Management", "DHHM", "R37"],
+                ["School of Hospitality", "Diploma in Restaurant &amp; Culinary Operations", "DRCO", "R46"],
+                ["School of Hospitality", "Diploma in Wellness &amp; Hospitality Business", "DWHB", "R44"],
+                ["School of Infocomm", "Diploma in Financial Technology", "DFT", "R18"],
+                ["School of Infocomm", "Diploma in Business Information Systems", "DBIS", "R13"],
+                ["School of Infocomm", "Diploma in Information Technology", "DIT", "R12"],
+                ["School of Infocomm", "Diploma in Digital Design &amp; Development", "DDDD", "R47"],
+                ["School of Infocomm", "Diploma in Infocomm Security Management", "DISM", "R55"],
+                ["School of Management and Communication", "Diploma in Consumer Behaviour &amp; Research", "DCBR", "R48"],
+                ["School of Management and Communication", "Diploma in Human Resource Management with Psychology", "DHRMP", "R52"],
+                ["School of Management and Communication", "Diploma in Mass Communication", "DMC", "R32"],
+                ["School of Management and Communication", "Diploma in Business", "DBIZ", "R60"],
+                ["School of Management and Communication", "Common Business Programme", "CBP", "R57"],
+                ["School of Sports, Health and Leisure", "Diploma in Health Management &amp; Promotion", "DHMP", "R43"],
+                ["School of Sports, Health and Leisure", "Diploma in Health Services Management", "DHSM", "R45"],
+                ["School of Sports, Health and Leisure", "Diploma in Outdoor &amp; Adventure Learning", "DOAL", "R33"],
+                ["School of Sports, Health and Leisure", "Diploma in Sport Coaching", "DSC", "R49"],
+                ["School of Sports, Health and Leisure", "Diploma in Sport &amp; Exercise Science", "DSES", "R26"],
+                ["School of Technology for the Arts", "Diploma in Design for User Experience", "DDUX", "R36"],
+                ["School of Technology for the Arts", "Diploma in Game Design", "DGB", "R35"],
+                ["School of Technology for the Arts", "Diploma in Media Production &amp; Design", "DMPD", "R19"],
+                ["School of Technology for the Arts", "Diploma in Sonic Arts", "DSA", "R24"],
+                ["School of Technology for the Arts", "Diploma in Arts &amp; Theatre Management", "DATM", "R25"],
+            ];
+
+            // Initialise DataTables to the table above
+            $(document).ready(function () {
+                $('#coursesTable').DataTable({
+                    data: dataSet,
+                    columns: [
+                        {title: "School"},
+                        {title: "Course Name"},
+                        {title: "Course Abbreviation"},
+                        {title: "Course Code"}
+                    ]
+                });
+            });
+        </script>
+
+        <!-- Chart -->
+        <h3>Number of Students in Each Polytechnic</h3>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script>
+            // Initialize Leaflet Map
+            var map = L.map('map').setView([1.3521, 103.8198], 11);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            // Polytechnic locations and names
+            var polytechnics = [
+                {name: 'Republic Polytechnic', location: [1.442981154630839, 103.78552604269716]},
+                {name: 'Temasek Polytechnic', location: [1.345636707235519, 103.93169268656347]},
+                {name: 'Ngee Ann Polytechnic', location: [1.3333115432288867, 103.77585076293944]},
+                {name: 'Nanyang Polytechnic', location: [1.3804647638163448, 103.8489695902588]},
+                {name: 'Singapore Polytechnic', location: [1.3099365891754744, 103.77754949362019]}
+            ];
+
+            // Add markers to the map
+            polytechnics.forEach(poly => {
+                L.marker(poly.location).addTo(map).bindPopup(poly.name);
+            });
+
+            // Initialize DataTable
+            $(document).ready(function () {
+                $('#coursesTable').DataTable();
+            });
+
+            // Initialize Chart
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Republic Polytechnic', 'Temasek Polytechnic', 'Ngee Ann Polytechnic', 'Nanyang Polytechnic', 'Singapore Polytechnic'],
+                    datasets: [{
+                            label: 'Number of Students in Each Polytechnic',
+                            data: [14400, 13000, 14800, 16220, 15900],
+                            borderWidth: 1,
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.7)', // Green
+                                'rgba(153, 102, 255, 0.7)', // Purple
+                                'rgba(54, 162, 235, 0.7)', // Blue
+                                'rgba(255,192,203, 0.7)', // Pink
+                                'rgba(255, 999, 132, 0.7)' // Yellow
+                            ],
+                        }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
