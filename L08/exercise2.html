@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercise 2</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullpage.js/dist/fullpage.min.css">
+        <style>
+            .slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="fullpage">
+            <div class="section">
+                <h1>Section 1</h1>
+            </div>
+            <div class="section">
+                <h1>Section 2</h1>
+            </div>
+            <div class="section">
+                <h1>Section 3</h1>
+                <div class="slide">
+                    <h1>Slide 1</h1>
+                    <img id="picture1" src="picture1.jpg" alt="NCT Dream">
+                </div>
+                <div class="slide">
+                    <h1>Slide 2</h1>
+                    <img id="picture2" src="picture2.jpg" alt="Seventeen">
+                </div>
+                <div class="slide">
+                    <h1>Slide 3</h1>
+                    <img id="picture3" src="picture3.jpg" alt="Aespa">
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/fullpage.js/dist/fullpage.min.js"></script>
+        <script>
+            new fullpage('#fullpage', {
+                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+                anchors: ['section1', 'section2', 'section3'],
+                navigation: true,
+                navigationPosition: 'right',
+                navigationTooltips: ['Section 1', 'Section 2', 'Section 3'],
+                slidesNavigation: true,
+                slidesNavPosition: 'bottom',
+            });
+        </script>
+    </body>
+</html>
